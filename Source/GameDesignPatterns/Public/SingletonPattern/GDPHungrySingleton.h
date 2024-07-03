@@ -18,6 +18,7 @@ public:
 	static UGDPHungrySingleton* GetGDPHungrySingletonInstance() { return Instance; }
 
 	void Test();
+	
 private:
 	static UGDPHungrySingleton* Instance;
 
@@ -27,3 +28,5 @@ private:
 
 //饿汉，直接实例化
 UGDPHungrySingleton* UGDPHungrySingleton::Instance = NewObject<UGDPHungrySingleton>();
+
+

@@ -22,7 +22,7 @@ public:
 	void SingletonTest();
 
 private:
-	UPROPERTY()
+	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> SingletonTestButton;
 
 	

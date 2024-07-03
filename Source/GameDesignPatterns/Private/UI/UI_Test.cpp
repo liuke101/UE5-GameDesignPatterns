@@ -6,8 +6,10 @@
 #include "Components/Button.h"
 #include "SingletonPattern/GDPGameInstance.h"
 #include "SingletonPattern/GDPGameSingleton.h"
+#include "SingletonPattern/GDPHungrySingleton.h"
 #include "SingletonPattern/GDPLazyGameSingleton.h"
 #include "SingletonPattern/GDPMeyersLazySingleton.h"
+
 
 void UUI_Test::BeginPlay()
 {
@@ -21,5 +23,6 @@ void UUI_Test::SingletonTest()
 	UGDPGameInstance::GetGDPGameInstance()->Test();
 	UGDPGameSingleton::GetGDPGameSingletonInstance()->Test();
 	UGDPLazyGameSingleton::GetGDPNativeGameSingletonInstance()->Test();
-	UGDPMeyersLazySingleton::GetGDPMeyersLazySingletonInstance().Test();
+	UGDPMeyersLazySingleton::GetGDPMeyersLazySingletonInstance()->Test();
+	UGDPHungrySingleton::GetGDPHungrySingletonInstance()->Test();
 }
