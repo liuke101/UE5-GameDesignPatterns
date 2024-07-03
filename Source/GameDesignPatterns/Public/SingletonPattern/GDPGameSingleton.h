@@ -16,9 +16,7 @@ class GAMEDESIGNPATTERNS_API UGDPGameSingleton : public UObject
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "GameDesignPatterns|SingletonPattern")
 	static UGDPGameSingleton* GetGDPGameSingletonInstance();
 
-	UFUNCTION(BlueprintCallable, Category = "GameDesignPatterns|SingletonPattern")
 	void Test();
 };

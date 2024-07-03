@@ -5,14 +5,15 @@
 
 UGDPGameSingleton* UGDPGameSingleton::GetGDPGameSingletonInstance()
 {
-	UGDPGameSingleton* Instance = nullptr;
-	
 	if (GEngine)
 	{
-		Instance = Cast<UGDPGameSingleton>(GEngine->GameSingleton);
+		if(UGDPGameSingleton* Instance = Cast<UGDPGameSingleton>(GEngine->GameSingleton))
+		{
+			return Instance;
+		}
 	}
 	
-	return Instance;
+	return nullptr;
 }
 
 void UGDPGameSingleton::Test()

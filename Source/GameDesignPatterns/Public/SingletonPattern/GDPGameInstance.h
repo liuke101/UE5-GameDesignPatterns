@@ -14,7 +14,8 @@ UCLASS()
 class GAMEDESIGNPATTERNS_API UGDPGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
+public:
+	static UGDPGameInstance* GetGDPGameInstance();
 
-	UFUNCTION(BlueprintCallable, Category = "GameDesignPatterns|SingletonPattern")
 	void Test();
 };
