@@ -12,5 +12,5 @@ UGDPMeyersLazySingleton* UGDPMeyersLazySingleton::GetGDPMeyersLazySingletonInsta
 
 void UGDPMeyersLazySingleton::Test()
 {
-	UE_LOG(LogTemp, Warning, TEXT("UGDPMeyersLazySingleton 测试调用"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, TEXT("UGDPMeyersLazySingleton 测试调用"));
 }

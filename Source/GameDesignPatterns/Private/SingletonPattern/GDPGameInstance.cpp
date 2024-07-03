@@ -8,9 +8,12 @@ UGDPGameInstance* UGDPGameInstance::GetGDPGameInstance()
 {
 	if(GEngine)
 	{
-		if(UGDPGameInstance* Instance = Cast<UGDPGameInstance>(GEngine->GetWorld()->GetGameInstance()))
+		if(UWorld* World = GEngine->GetWorld())
 		{
-			return Instance;
+			if(UGDPGameInstance* Instance = Cast<UGDPGameInstance>(World->GetGameInstance()))
+			{
+				return Instance;
+			}
 		}
 	}
 	

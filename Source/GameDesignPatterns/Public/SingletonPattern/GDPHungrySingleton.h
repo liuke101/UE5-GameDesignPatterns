@@ -26,7 +26,6 @@ private:
 	virtual ~UGDPHungrySingleton() override = default;
 };
 
-//饿汉，直接实例化
-UGDPHungrySingleton* UGDPHungrySingleton::Instance = NewObject<UGDPHungrySingleton>();
+
 
 

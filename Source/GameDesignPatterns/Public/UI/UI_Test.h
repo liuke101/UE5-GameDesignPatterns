@@ -15,9 +15,9 @@ class GAMEDESIGNPATTERNS_API UUI_Test : public UUserWidget
 {
 	GENERATED_BODY()
 
-	virtual void BeginPlay();
-
 public:
+	virtual void NativeConstruct() override;
+	
 	UFUNCTION()
 	void SingletonTest();
 
