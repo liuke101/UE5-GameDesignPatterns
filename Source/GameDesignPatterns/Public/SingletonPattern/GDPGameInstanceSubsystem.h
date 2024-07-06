@@ -7,7 +7,7 @@
 #include "GDPGameInstanceSubsystem.generated.h"
 
 /**
- * 
+ * GameInstanceSubsystem
  */
 UCLASS()
 class GAMEDESIGNPATTERNS_API UGDPGameInstanceSubsystem : public UGameInstanceSubsystem

@@ -7,7 +7,7 @@
 #include "GDPLazySingleton.generated.h"
 
 /**
- * 手动实现懒汉式单例
+ * 懒汉式单例
  */
 UCLASS()
 class GAMEDESIGNPATTERNS_API UGDPLazySingleton : public UObject
