@@ -7,6 +7,7 @@
 #include "BuilderPattern/FemaleCharacterBuilder.h"
 #include "BuilderPattern/MaleCharacterBuilder.h"
 #include "BuilderPattern/ProductCharacter.h"
+#include "CommandPattern/CommandInvoker.h"
 #include "Components/Button.h"
 #include "Components/ComboBoxString.h"
 #include "FactoryPattern/AbstractFactory/AdidasProducer.h"
@@ -32,6 +33,7 @@ void UUI_Test::NativeConstruct()
 	FactoryMethodTestButton->OnClicked.AddDynamic(this, &UUI_Test::FactoryMethodPatternTest);
 	AbstractFactoryTestButton->OnClicked.AddDynamic(this, &UUI_Test::AbstractFactoryPatternTest);
 	BuilderTestButton->OnClicked.AddDynamic(this, &UUI_Test::BuilderPatternTest);
+	CommandTestButton->OnClicked.AddDynamic(this, &UUI_Test::CommandPatternTest);
 }
 
 void UUI_Test::SingletonTest()
@@ -97,4 +99,10 @@ void UUI_Test::BuilderPatternTest()
 	Director->SetCharacterBuilder(NewObject<UMaleCharacterBuilder>(this));
 	AProductCharacter* MaleCharacter = Director->Construct();
 	MaleCharacter->Show();
+}
+
+void UUI_Test::CommandPatternTest()
+{
+	UCommandInvoker* Invoker = NewObject<UCommandInvoker>(this);
+	Invoker->Invoke();
 }
