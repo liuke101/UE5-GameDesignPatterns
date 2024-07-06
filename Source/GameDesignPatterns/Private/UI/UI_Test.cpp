@@ -3,6 +3,10 @@
 
 #include "UI/UI_Test.h"
 
+#include "BuilderPattern/CharacterBuildDirector.h"
+#include "BuilderPattern/FemaleCharacterBuilder.h"
+#include "BuilderPattern/MaleCharacterBuilder.h"
+#include "BuilderPattern/ProductCharacter.h"
 #include "Components/Button.h"
 #include "Components/ComboBoxString.h"
 #include "FactoryPattern/AbstractFactory/AdidasProducer.h"
@@ -27,6 +31,7 @@ void UUI_Test::NativeConstruct()
 	SimpleFactoryTestButton->OnClicked.AddDynamic(this, &UUI_Test::SimpleFactoryPatternTest);
 	FactoryMethodTestButton->OnClicked.AddDynamic(this, &UUI_Test::FactoryMethodPatternTest);
 	AbstractFactoryTestButton->OnClicked.AddDynamic(this, &UUI_Test::AbstractFactoryPatternTest);
+	BuilderTestButton->OnClicked.AddDynamic(this, &UUI_Test::BuilderPatternTest);
 }
 
 void UUI_Test::SingletonTest()
@@ -75,4 +80,21 @@ void UUI_Test::AbstractFactoryPatternTest()
 	ULiNingProducer* LiNingProducer = NewObject<ULiNingProducer>(this);
 	LiNingProducer->CreateShoe();
 	LiNingProducer->CreateCloth();
+}
+
+void UUI_Test::BuilderPatternTest()
+{
+	//BUG: 第二次点击按钮崩溃
+	//创建指挥者
+	UCharacterBuildDirector* Director = NewObject<UCharacterBuildDirector>(this);
+
+	//指定创建女性角色
+	Director->SetCharacterBuilder(NewObject<UFemaleCharacterBuilder>(this));
+	AProductCharacter* FemaleCharacter = Director->Construct();
+	FemaleCharacter->Show();
+
+	//指定创建男性角色
+	Director->SetCharacterBuilder(NewObject<UMaleCharacterBuilder>(this));
+	AProductCharacter* MaleCharacter = Director->Construct();
+	MaleCharacter->Show();
 }

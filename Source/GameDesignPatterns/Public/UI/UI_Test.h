@@ -33,6 +33,9 @@ public:
 
 	UFUNCTION()
 	void AbstractFactoryPatternTest();
+
+	UFUNCTION()
+	void BuilderPatternTest();
 public:
 	
 private:
@@ -51,4 +54,8 @@ private:
 	//抽象工厂模式 
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> AbstractFactoryTestButton;
+
+	//建造者模式
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UButton> BuilderTestButton;
 };
