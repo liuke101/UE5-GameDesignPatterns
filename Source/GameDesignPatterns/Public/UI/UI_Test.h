@@ -42,6 +42,9 @@ public:
 
 	UFUNCTION()
 	void StatePatternTest();
+
+	UFUNCTION()
+	void StrategyPatternTest();
 public:
 	
 private:
@@ -72,4 +75,8 @@ private:
 	//状态模式
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> StateTestButton;
+
+	//策略模式
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UButton> StrategyTestButton;
 };

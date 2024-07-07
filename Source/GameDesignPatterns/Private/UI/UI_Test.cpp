@@ -25,6 +25,9 @@
 #include "SingletonPattern/GDPLazySingleton.h"
 #include "SingletonPattern/GDPMeyersLazySingleton.h"
 #include "StatePattern/StateContextHUD.h"
+#include "StrategyPattern/CalcStrategyA.h"
+#include "StrategyPattern/CalcStrategyB.h"
+#include "StrategyPattern/StrategyContext.h"
 
 class AStateContextHUD;
 
@@ -38,6 +41,7 @@ void UUI_Test::NativeConstruct()
 	BuilderTestButton->OnClicked.AddDynamic(this, &UUI_Test::BuilderPatternTest);
 	CommandTestButton->OnClicked.AddDynamic(this, &UUI_Test::CommandPatternTest);
 	StateTestButton->OnClicked.AddDynamic(this, &UUI_Test::StatePatternTest);
+	StrategyTestButton->OnClicked.AddDynamic(this, &UUI_Test::StrategyPatternTest);
 }
 
 void UUI_Test::SingletonTest()
@@ -118,4 +122,19 @@ void UUI_Test::StatePatternTest()
 		StateContext->ChangeState(StateContext->StartMenu);
 	}
 	
+}
+
+void UUI_Test::StrategyPatternTest()
+{
+	UStrategyContext* StrategyContext = NewObject<UStrategyContext>(this);
+
+	//策略A
+	UCalcStrategyA* StrategyA = NewObject<UCalcStrategyA>(this);
+	StrategyContext->SetStatregy(StrategyA);
+	StrategyContext->Calc(10, 5);
+	
+	//策略B
+	UCalcStrategyB* StrategyB = NewObject<UCalcStrategyB>(this);
+	StrategyContext->SetStatregy(StrategyB);
+	StrategyContext->Calc(10, 5);
 }
