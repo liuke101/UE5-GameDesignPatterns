@@ -18,6 +18,8 @@
 #include "FactoryPattern/Product/Shoe.h"
 #include "FactoryPattern/SimpleFactory/SimpleFactory.h"
 #include "Kismet/GameplayStatics.h"
+#include "PrototypePattern/PrototypeCharacterA.h"
+#include "PrototypePattern/prototypeCharacterB.h"
 #include "SingletonPattern/GDPGameInstance.h"
 #include "SingletonPattern/GDPGameInstanceSubsystem.h"
 #include "SingletonPattern/GDPGameSingleton.h"
@@ -29,7 +31,6 @@
 #include "StrategyPattern/CalcStrategyB.h"
 #include "StrategyPattern/StrategyContext.h"
 
-class AStateContextHUD;
 
 void UUI_Test::NativeConstruct()
 {
@@ -39,6 +40,7 @@ void UUI_Test::NativeConstruct()
 	FactoryMethodTestButton->OnClicked.AddDynamic(this, &UUI_Test::FactoryMethodPatternTest);
 	AbstractFactoryTestButton->OnClicked.AddDynamic(this, &UUI_Test::AbstractFactoryPatternTest);
 	BuilderTestButton->OnClicked.AddDynamic(this, &UUI_Test::BuilderPatternTest);
+	PrototypeTestButton->OnClicked.AddDynamic(this, &UUI_Test::PrototypePatternTest);
 	CommandTestButton->OnClicked.AddDynamic(this, &UUI_Test::CommandPatternTest);
 	StateTestButton->OnClicked.AddDynamic(this, &UUI_Test::StatePatternTest);
 	StrategyTestButton->OnClicked.AddDynamic(this, &UUI_Test::StrategyPatternTest);
@@ -107,6 +109,20 @@ void UUI_Test::BuilderPatternTest()
 	Director->SetCharacterBuilder(NewObject<UMaleCharacterBuilder>(this));
 	AProductCharacter* MaleCharacter = Director->Construct();
 	MaleCharacter->Show();
+}
+
+void UUI_Test::PrototypePatternTest()
+{
+	if(UWorld* World = GetWorld())
+	{
+		APrototypeCharacterA* PrototypeCharacterA = World->SpawnActor<APrototypeCharacterA>(APrototypeCharacterA::StaticClass());
+		APrototypeCharacterA* CloneCharacterA = Cast<APrototypeCharacterA>(PrototypeCharacterA->Clone());
+		CloneCharacterA->Show();
+
+		AprototypeCharacterB* PrototypeCharacterB = World->SpawnActor<AprototypeCharacterB>(AprototypeCharacterB::StaticClass());
+		AprototypeCharacterB* CloneCharacterB = Cast<AprototypeCharacterB>(PrototypeCharacterB->Clone());
+		CloneCharacterB->Show();
+	}
 }
 
 void UUI_Test::CommandPatternTest()

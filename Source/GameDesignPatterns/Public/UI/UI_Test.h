@@ -38,6 +38,9 @@ public:
 	void BuilderPatternTest();
 
 	UFUNCTION()
+	void PrototypePatternTest();
+
+	UFUNCTION()
 	void CommandPatternTest();
 
 	UFUNCTION()
@@ -68,6 +71,10 @@ private:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> BuilderTestButton;
 
+	//原型模式
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UButton> PrototypeTestButton;
+
 	//命令模式
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> CommandTestButton;
@@ -79,4 +86,6 @@ private:
 	//策略模式
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> StrategyTestButton;
+
+	
 };
