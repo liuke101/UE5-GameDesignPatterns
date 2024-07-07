@@ -39,6 +39,9 @@ public:
 
 	UFUNCTION()
 	void CommandPatternTest();
+
+	UFUNCTION()
+	void StatePatternTest();
 public:
 	
 private:
@@ -65,4 +68,8 @@ private:
 	//命令模式
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> CommandTestButton;
+
+	//状态模式
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UButton> StateTestButton;
 };

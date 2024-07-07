@@ -18,12 +18,16 @@
 #include "FactoryPattern/FactoryMethod/NikeFactory.h"
 #include "FactoryPattern/Product/Shoe.h"
 #include "FactoryPattern/SimpleFactory/SimpleFactory.h"
+#include "Kismet/GameplayStatics.h"
 #include "SingletonPattern/GDPGameInstance.h"
 #include "SingletonPattern/GDPGameInstanceSubsystem.h"
 #include "SingletonPattern/GDPGameSingleton.h"
 #include "SingletonPattern/GDPHungrySingleton.h"
 #include "SingletonPattern/GDPLazySingleton.h"
 #include "SingletonPattern/GDPMeyersLazySingleton.h"
+#include "StatePattern/StateContextHUD.h"
+
+class AStateContextHUD;
 
 void UUI_Test::NativeConstruct()
 {
@@ -34,6 +38,7 @@ void UUI_Test::NativeConstruct()
 	AbstractFactoryTestButton->OnClicked.AddDynamic(this, &UUI_Test::AbstractFactoryPatternTest);
 	BuilderTestButton->OnClicked.AddDynamic(this, &UUI_Test::BuilderPatternTest);
 	CommandTestButton->OnClicked.AddDynamic(this, &UUI_Test::CommandPatternTest);
+	StateTestButton->OnClicked.AddDynamic(this, &UUI_Test::StatePatternTest);
 }
 
 void UUI_Test::SingletonTest()
@@ -105,4 +110,12 @@ void UUI_Test::CommandPatternTest()
 {
 	UCommandInvoker* Invoker = NewObject<UCommandInvoker>(this);
 	Invoker->Invoke();
+}
+
+void UUI_Test::StatePatternTest()
+{
+	if(AStateContextHUD* StateContext = Cast<AStateContextHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD()))
+	{
+		StateContext->ChangeState(StateContext->StartMenu);
+	}
 }
