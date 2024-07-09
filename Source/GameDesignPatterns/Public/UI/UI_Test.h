@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "UI_Test.generated.h"
 
+class UMVP_View;
 class UComboBoxString;
 class UComboBoxKey;
 class UComboBox;
@@ -48,6 +49,13 @@ public:
 
 	UFUNCTION()
 	void StrategyPatternTest();
+
+	UFUNCTION()
+	void FlyweightPatternTest();
+
+	UFUNCTION()
+	void MVPTest();
+	
 public:
 	
 private:
@@ -87,5 +95,15 @@ private:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UButton> StrategyTestButton;
 
+	//享元模式
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<UButton> FlyweightTestButton;
+
+	//MVP测试UI
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<UButton> MVPTestButton;
+	
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<UMVP_View> MVP_View;
 	
 };

@@ -17,7 +17,10 @@
 #include "FactoryPattern/FactoryMethod/NikeFactory.h"
 #include "FactoryPattern/Product/Shoe.h"
 #include "FactoryPattern/SimpleFactory/SimpleFactory.h"
+#include "FlyweightPattern/FlyweightFactory.h"
 #include "Kismet/GameplayStatics.h"
+#include "MVP/MVP_Controller.h"
+#include "MVP/MVP_View.h"
 #include "PrototypePattern/PrototypeCharacterA.h"
 #include "PrototypePattern/prototypeCharacterB.h"
 #include "SingletonPattern/GDPGameInstance.h"
@@ -44,6 +47,9 @@ void UUI_Test::NativeConstruct()
 	CommandTestButton->OnClicked.AddDynamic(this, &UUI_Test::CommandPatternTest);
 	StateTestButton->OnClicked.AddDynamic(this, &UUI_Test::StatePatternTest);
 	StrategyTestButton->OnClicked.AddDynamic(this, &UUI_Test::StrategyPatternTest);
+	FlyweightTestButton->OnClicked.AddDynamic(this, &UUI_Test::FlyweightPatternTest);
+	MVPTestButton->OnClicked.AddDynamic(this, &UUI_Test::MVPTest);
+	MVP_View->RemoveFromParent(); //初始隐藏
 }
 
 void UUI_Test::SingletonTest()
@@ -154,3 +160,28 @@ void UUI_Test::StrategyPatternTest()
 	StrategyContext->SetStatregy(StrategyB);
 	StrategyContext->Calc(10, 5);
 }
+
+void UUI_Test::FlyweightPatternTest()
+{
+	UFlyweightFactory* Factory = NewObject<UFlyweightFactory>(this);
+	Factory->CreateNewTree(1, 1, "TreeA", FLinearColor::Red);
+	Factory->CreateNewTree(2, 2, "TreeA", FLinearColor::Red);
+	Factory->CreateNewTree(3, 3, "TreeA", FLinearColor::Red);
+	Factory->CreateNewTree(3, 3, "TreeB", FLinearColor::Blue);
+
+	//查看享元池的元素数量，因为上述代码中创建了三个相同TreeType的树和一个不同的树，所以享元池中应该只有两个元素
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("TreeTypes Num: %d"), Factory->TreeTypes.Num()));
+}
+
+void UUI_Test::MVPTest()
+{
+	//初始化
+	UMVP_Controller* Controller = NewObject<UMVP_Controller>(this);
+	UMVP_Model* Model = NewObject<UMVP_Model>(this);
+
+	Controller->SetModel(Model);
+
+	MVP_View->AddToViewport();
+	MVP_View->SetController(Controller);
+}
+
